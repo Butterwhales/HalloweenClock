@@ -25,9 +25,13 @@ public class ConfigParser {
         configHashMap.put("DigitalClock", "false");
         configHashMap.put("DigitalClockColor", "#004469");
         configHashMap.put("DigitalClockFont", "Courier New");
+        configHashMap.put("HourHandLength", "0.25");
+        configHashMap.put("MinuteHandLength", "0.36");
+        configHashMap.put("SecondHandLength", "0.36");
         configHashMap.put("FlyingImages", "false");
         configHashMap.put("BackgroundColor", "#cabbbb");
         configHashMap.put("Framerate", "60");
+        configHashMap.put("RandomImages", "");
         //configHashMap.put("", "");
 
         return configHashMap;
@@ -60,7 +64,9 @@ public class ConfigParser {
             for (int i = 0; i < parts.length; i++) {
                 parts[i] = parts[i].trim();
             }
-            configHashMap.put(parts[0], parts[1]);
+            if (!line.isEmpty() && !line.startsWith("//")) { //ignore empty lines and commented out lines
+                configHashMap.put(parts[0], parts[1]);
+            }
         }
         return configHashMap;
     }
